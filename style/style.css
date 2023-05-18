@@ -2,6 +2,17 @@ body {
   font-family: "Roboto Slab", serif;
   color: #3a3a3a;
 }
+#background-video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+}
 h1 {
   font-weight: bold;
   margin: 20px 0 0 0;
@@ -15,10 +26,10 @@ h4 {
   font-weight: 300;
 }
 h6 {
-  display: block;
-  margin: 0 auto;
-  max-width: 700px;
   text-align: center;
+  position: relative;
+  top: 50px;
+  font-size: 14px;
 }
 h6 a {
   color: #576f86;
@@ -26,6 +37,7 @@ h6 a {
   font-weight: bold;
 }
 .container {
+  background: #fff;
   max-width: 700px;
   margin: 50px auto 20px auto;
   padding: 50px;
