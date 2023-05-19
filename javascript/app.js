@@ -73,9 +73,15 @@ function displayWeather(response) {
   document.querySelector("#current-time").innerHTML = showDate(
     response.data.time * 1000
   );
-  document.querySelector(
-    "#weather-icon"
-  ).src = `${iconUrl}${response.data.condition.icon}.png`;
+  document
+    .querySelector("#weather-icon")
+    .setAttribute(
+      "src",
+      `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+    );
+  document
+    .querySelector("#weather-icon")
+    .setAttribute("alt", `${response.data.condition.description}`);
 }
 
 form.addEventListener("submit", function (event) {

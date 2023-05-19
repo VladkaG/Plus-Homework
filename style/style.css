@@ -38,6 +38,9 @@ h6 a {
   text-decoration: none;
   font-weight: bold;
 }
+h6 a:hover {
+  cursor: pointer;
+}
 #description {
   text-transform: capitalize;
 }
@@ -81,11 +84,6 @@ h6 a {
 .currently-weather-temp,
 .currently-weather-icon {
   padding: 0 !important;
-}
-.currently-weather img {
-  position: relative;
-  top: 6px;
-  left: 0;
 }
 .temperature {
   font-weight: bold;
@@ -153,7 +151,4 @@ h6 a {
 }
 .calendar-temp span {
   opacity: 0.8;
-}
-.icon {
-  max-width: 80px;
 }
