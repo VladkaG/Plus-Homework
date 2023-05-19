@@ -1,4 +1,5 @@
-function showDate(date) {
+function showDate(timestamp) {
+  let date = new Date(timestamp);
   let days = [
     "Sunday",
     "Monday",
@@ -21,11 +22,8 @@ function showDate(date) {
     document.querySelector("#background-video").src = `./images/night.mp4`;
   }
 
-  let sentence = `${currentDay} ${currentHour}:${currentMin}`;
-  return sentence;
+  return `${currentDay} ${currentHour}:${currentMin}`;
 }
-let date = new Date();
-document.querySelector("#current-time").innerHTML = showDate(date);
 
 /*******************************************************************/
 
@@ -70,6 +68,9 @@ function displayWeather(response) {
   );
   document.querySelector("#description").innerHTML =
     response.data.weather[0].main;
+  document.querySelector("#current-time").innerHTML = showDate(
+    response.data.dt * 1000
+  );
 }
 
 form.addEventListener("submit", function (event) {
