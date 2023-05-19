@@ -97,13 +97,16 @@ h6 a:hover {
   left: 3px;
 }
 .units a {
-  color: #685478;
+  color: #576f86;
+}
+.units a:hover {
+  cursor: default;
 }
 .celsius-link,
 .fahrenheit-link {
   text-decoration: none;
 }
-.celsius-link:active {
+.currently-weather-temp .active {
   color: #000;
 }
 .weather-block {
