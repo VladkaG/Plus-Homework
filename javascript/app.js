@@ -51,9 +51,11 @@ function search(city) {
   let url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(url).then(displayWeather);
 }
-
+debugger;
 function displayWeather(response) {
+  let iconUrl = `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/`;
   document.querySelector("h1").innerHTML = response.data.city;
+
   document.querySelector("#temperature").innerHTML = Math.round(
     response.data.temperature.current
   );
@@ -71,14 +73,20 @@ function displayWeather(response) {
   document.querySelector("#current-time").innerHTML = showDate(
     response.data.time * 1000
   );
+  document.querySelector(
+    "#weather-icon"
+  ).src = `${iconUrl}${response.data.condition.icon}.png`;
 }
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   let city = document.querySelector("#search-input").value;
-  search(city);
+  if (city === "") {
+    alert("Write a city");
+  } else {
+    search(city);
+  }
 });
-/*******************************************************************/
 
 locationButton.addEventListener("click", function (event) {
   event.preventDefault();

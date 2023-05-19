@@ -16,11 +16,13 @@ body {
 h1 {
   font-weight: bold;
   margin: 20px 0 0 0;
+  font-size: 32px;
 }
 h3,
 h4 {
   font-weight: lighter;
   margin: 0;
+  font-size: 24px;
 }
 h4 {
   font-weight: 300;
@@ -76,8 +78,14 @@ h6 a {
 .currently-weather {
   text-align: center;
 }
+.currently-weather-temp,
+.currently-weather-icon {
+  padding: 0 !important;
+}
 .currently-weather img {
-  max-width: 80px;
+  position: relative;
+  top: 6px;
+  left: 0;
 }
 .temperature {
   font-weight: bold;
@@ -103,6 +111,9 @@ h6 a {
 .weather-block {
   margin: 20px 0;
   border-bottom: 1px solid #3a3a3a;
+}
+.weather-block-col {
+  padding-left: 0;
 }
 .weather-info {
   font-size: 20px;
