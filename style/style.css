@@ -36,7 +36,10 @@ h6 a {
   text-decoration: none;
   font-weight: bold;
 }
-.container {
+#description {
+  text-transform: capitalize;
+}
+.weather-app {
   background: #fff;
   max-width: 630px;
   margin: 50px auto 20px auto;
