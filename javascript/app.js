@@ -109,3 +109,27 @@ celsiusLink.addEventListener("click", function (event) {
   fahrenheitLink.classList.remove("active");
   celsiusLink.classList.add("active");
 });
+
+function displayForecast() {
+  let forecastHTML = `<div class="row">`;
+  let days = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      ` <div class="col-2 forecast-card">
+              <div class="forecast-day">${day}</div>
+              <div class="forecast-image">
+                <img class="icon" id="icon" src="images/cloudy.png" alt="" />
+              </div>
+              <div class="forecast-temp">
+                <span id="max-temp">27</span>°
+                <span class="min-temp" id="min-temp">14</span
+                ><span class="min-temp">°</span>
+              </div>
+            </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  document.querySelector("#forecast").innerHTML = forecastHTML;
+}
+
+displayForecast();
