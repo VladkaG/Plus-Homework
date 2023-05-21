@@ -16,7 +16,7 @@ function showDate(timestamp) {
     currentMin = `0${currentMin}`;
   }
 
-  if (currentHour >= 4 && currentHour < 20) {
+  if (currentHour > 4 && currentHour < 20) {
     document.querySelector("#background-video").src = `./images/day.mp4`;
   } else {
     document.querySelector("#background-video").src = `./images/night.mp4`;
@@ -136,22 +136,3 @@ locationButton.addEventListener("click", function (event) {
 });
 
 search("Kharkiv");
-
-/*******************************************************************/
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-let celsiusLink = document.querySelector("#celsius-link");
-fahrenheitLink.addEventListener("click", function (event) {
-  event.preventDefault();
-  document.querySelector("#temperature").innerHTML = Math.round(
-    (celsiusTemperature * 9) / 5 + 32
-  );
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-});
-celsiusLink.addEventListener("click", function (event) {
-  event.preventDefault();
-  document.querySelector("#temperature").innerHTML =
-    Math.round(celsiusTemperature);
-  fahrenheitLink.classList.remove("active");
-  celsiusLink.classList.add("active");
-});
