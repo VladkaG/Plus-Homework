@@ -111,7 +111,7 @@ h6 a:hover {
 }
 .weather-block {
   margin: 20px 0;
-  border-bottom: 1px solid #3a3a3a;
+  border-bottom: 1px solid #719ea7;
 }
 .weather-block-col {
   padding-left: 0;
@@ -151,7 +151,7 @@ h6 a:hover {
   margin-bottom: 10px;
 }
 .forecast-image img {
-  max-width: 60px;
+  max-width: 80px;
 }
 .forecast-temp {
   margin-top: 10px;

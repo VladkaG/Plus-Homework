@@ -16,13 +16,22 @@ function showDate(timestamp) {
     currentMin = `0${currentMin}`;
   }
 
-  if (currentHour > 4 && currentHour < 20) {
+  if (currentHour >= 4 && currentHour < 20) {
     document.querySelector("#background-video").src = `./images/day.mp4`;
   } else {
     document.querySelector("#background-video").src = `./images/night.mp4`;
   }
 
   return `${currentDay} ${currentHour}:${currentMin}`;
+}
+
+/*******************************************************************/
+
+function showForecastDate(timestamp) {
+  let date = new Date(timestamp);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let currentDay = days[date.getDay()];
+  return currentDay;
 }
 
 /*******************************************************************/
@@ -36,6 +45,42 @@ function search(city) {
   let url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(url).then(displayWeather);
 }
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  let forecastHTML = `<div class="row">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML += ` <div class="col-2 forecast-card">
+              <div class="forecast-day">${showForecastDate(
+                forecastDay.time * 1000
+              )}</div>
+              <div class="forecast-image" id="forecast-image">
+                <img class="icon" id="icon" src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+                  forecastDay.condition.icon
+                }.png" alt="${forecastDay.condition.icon}" />
+              </div>
+              <div class="forecast-temp">
+                <span id="max-temp">${Math.round(
+                  forecastDay.temperature.maximum
+                )}</span>°
+                <span class="min-temp" id="min-temp">${Math.round(
+                  forecastDay.temperature.minimum
+                )}</span
+                ><span class="min-temp">°</span>
+              </div>
+            </div>`;
+    }
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  document.querySelector("#forecast").innerHTML = forecastHTML;
+}
+
+function getForecast(city) {
+  let url = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(url).then(displayForecast);
+}
+
 function displayWeather(response) {
   let iconUrl = `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/`;
 
@@ -67,6 +112,7 @@ function displayWeather(response) {
   document
     .querySelector("#weather-icon")
     .setAttribute("alt", `${response.data.condition.description}`);
+  getForecast(response.data.city);
 }
 
 form.addEventListener("submit", function (event) {
@@ -109,27 +155,3 @@ celsiusLink.addEventListener("click", function (event) {
   fahrenheitLink.classList.remove("active");
   celsiusLink.classList.add("active");
 });
-
-function displayForecast() {
-  let forecastHTML = `<div class="row">`;
-  let days = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      ` <div class="col-2 forecast-card">
-              <div class="forecast-day">${day}</div>
-              <div class="forecast-image">
-                <img class="icon" id="icon" src="images/cloudy.png" alt="" />
-              </div>
-              <div class="forecast-temp">
-                <span id="max-temp">27</span>°
-                <span class="min-temp" id="min-temp">14</span
-                ><span class="min-temp">°</span>
-              </div>
-            </div>`;
-  });
-  forecastHTML = forecastHTML + `</div>`;
-  document.querySelector("#forecast").innerHTML = forecastHTML;
-}
-
-displayForecast();
