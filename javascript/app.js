@@ -16,7 +16,7 @@ function showDate(timestamp) {
     currentMin = `0${currentMin}`;
   }
 
-  if (currentHour > 4 && currentHour < 20) {
+  if (currentHour < 4 && currentHour < 20) {
     document.querySelector("#background-video").src = `./images/day.mp4`;
   } else {
     document.querySelector("#background-video").src = `./images/night.mp4`;
